@@ -30,7 +30,7 @@ PROYECTO_FINAL/
 
 ## CARACTERÍSTICAS GENERALES
 
-###C alibración de cámara:
+### Calibración de cámara:
 Se usa un patrón de tablero de ajedrez para corregir la distorsión y asegurar medidas confiables.
 
 ### Modo seguridad:
@@ -55,9 +55,9 @@ Es necesaria la instalación de las siguientes dependencias antes de ejecutar el
 
 pip install numpy opencv-python imageio mediapipe colorama
 
-Pasos para ejecución
+## Pasos para ejecución
 
-1. Calibración de la cámara
+### 1. Calibración de la cámara
 Antes de usar el sistema, se debe calibrar la cámara.
 Es necesario tener las imágenes del tablero de ajedrez en data/calibration_chess/.
 
@@ -71,7 +71,7 @@ Matriz intrínseca
 Coeficientes de distorsión
 Parámetros extrínsecos
 
-2. Ejecución del sistema principal
+### 2. Ejecución del sistema principal
 Para ejecutar todo el flujo del sistema, ejecuta:
 
 python src/main.py
@@ -83,14 +83,14 @@ Esperar al desbloqueo mediante detección de patrones (modo de seguridad).
 Una vez autenticado, iniciar el air drawing con seguimiento de mano y Kalman filter.
 Mostrar el resultado en tiempo real con la trayectoria dibujada.
 
-3. Pruebas de cámara y componentes
+### 3. Pruebas de cámara y componentes
    
 Para probar la cámara o verificar las segmentaciones:
 
 python src/test.py
 
 
-Key Functions
+## Key Functions
 
 calibration.py
 calibrar(): Realiza la calibración de la cámara usando un tablero de ajedrez y guarda los parámetros en un archivo .npz.
@@ -109,11 +109,11 @@ kalman_update(point): Aplica el filtro de Kalman para suavizar el movimiento det
 main.py
 Controla el flujo completo del sistema:
 
-Calibración.
+## Calibración.
 Modo de autenticación visual.
 Tracking y dibujo en tiempo real.
 
-Ejemplo de salida
+## Ejemplo de salida
 1️ Modo seguridad:
 El sistema detecta la secuencia de patrones geométricos (por ejemplo, líneas y cuadrados).
 Si la secuencia es correcta, aparece un mensaje de desbloqueo.
