@@ -1,0 +1,57 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0" version="28.2.5">
+  <diagram name="AirDraw Secure" id="M4oh8Oy_SWOp-0yMZUj6">
+    <mxGraphModel dx="1990" dy="955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_gSgJKZxbe11h_PHX74t-1" value="Calibración" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="260" y="80" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-2" value="Parámetros de cámara" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="330" y="50" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="_gSgJKZxbe11h_PHX74t-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-4" value="Sistema AirDraw Seguro" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#000000;fontSize=13;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="180" y="200" width="640" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-5" value="In" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="130" y="270" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="280" as="sourcePoint" />
+            <mxPoint x="260" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-7" value="Módulo de Seguridad&#xa;(detección de patrones)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="260" y="250" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-8" value="Modo AirDraw activado" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#000000;fontSize=12;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="490" y="230" width="300" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-9" value="Tracker mano&#xa;(segmentación + Kalman)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="520" y="260" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-10" value="Salida vídeo&#xa;(trayectoria dibujada)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="520" y="360" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="_gSgJKZxbe11h_PHX74t-7" target="_gSgJKZxbe11h_PHX74t-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="_gSgJKZxbe11h_PHX74t-9" target="_gSgJKZxbe11h_PHX74t-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-13" value="Vídeo con dibujo&#xa;(salida)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="840" y="330" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_gSgJKZxbe11h_PHX74t-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="_gSgJKZxbe11h_PHX74t-10" target="_gSgJKZxbe11h_PHX74t-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
