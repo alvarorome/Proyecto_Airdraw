@@ -126,7 +126,7 @@ Se muestra la trayectoria sobre el vídeo en tiempo real, generando el air drawi
 
  Aquí puedes insertar las capturas del vídeo con la trayectoria dibujada.
 
-Configuración
+## Configuración
 
 Archivos de calibración:
 data/calibration_data.npz
@@ -136,12 +136,12 @@ data/calibration_chess/*.jpg
 
 Se recomienda buena iluminación y fondo uniforme para mejorar la detección de piel.
 
-Usage Notes
+## Notas prácticas
 La calibración mejora sustancialmente la precisión del seguimiento.
 El filtro de Kalman reduce el ruido por movimientos bruscos o iluminación variable.
 El modo de seguridad puede ajustarse cambiando el patrón objetivo en seguridad.py.
 
-Futuros Desarrollos
+## Futuros Desarrollos
 
 Implementar reconocimiento de gestos para control sin contacto.
 Integrar modelos de IA para reconocer lo que el usuario dibuja.
