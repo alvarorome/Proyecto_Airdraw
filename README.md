@@ -8,22 +8,40 @@ Además, integra un modo de seguridad que utiliza detección de contornos y patr
 
 ---
 
+## Tabla de contenidos
+
+- [Visión General](#visión-general)  
+- [Estructura](#estructura)  
+- [Características generales](#características-generales)  
+- [Dependencias](#dependencias)  
+- [Pasos para ejecución](#pasos-para-ejecución)  
+  - [1. Calibración de la cámara](#1-calibración-de-la-cámara)  
+  - [2. Ejecución del sistema principal](#2-ejecución-del-sistema-principal)  
+  - [3. Pruebas de cámara y componentes](#3-pruebas-de-cámara-y-componentes)  
+- [Key Functions](#key-functions)  
+- [Ejemplo de salida](#ejemplo-de-salida)  
+- [Configuración](#configuración)  
+- [Notas prácticas](#notas-prácticas)  
+- [Futuros desarrollos](#futuros-desarrollos)
+
+---
+
 ## ESTRUCTURA
 
-PROYECTO_FINAL/
-├── data/
-│   ├── calibration_chess/           # Imágenes del tablero de ajedrez para la calibración
-│   ├── calibration_data.npz         # Datos de calibración guardados (intrínsecos, distorsión, etc.)
-│
-├── src/
-│   ├── calibration.py               # Calibración de cámara con tablero de ajedrez
-│   ├── main.py                      # Script principal que ejecuta el flujo completo del sistema
-│   ├── seguridad.py                 # Detección de patrones y desbloqueo del sistema
-│   ├── tracker_kalman.py            # Implementación del filtro de Kalman para suavizar el seguimiento
-│   ├── tracker.py                   # Lógica de seguimiento de la mano mediante segmentación y contornos
-│   ├── test.py                      # Scripts de prueba para cámara y funciones auxiliares
-│
-├── diagrama_bloques.drawio          # Diagrama de bloques del sistema
+PROYECTO_FINAL/  
+├── data/  
+│   ├── calibration_chess/           # Imágenes del tablero de ajedrez para la calibración  
+│   ├── calibration_data.npz         # Datos de calibración guardados (intrínsecos, distorsión, etc.)  
+│  
+├── src/  
+│   ├── calibration.py               # Calibración de cámara con tablero de ajedrez  
+│   ├── main.py                      # Script principal que ejecuta el flujo completo del sistema  
+│   ├── seguridad.py                 # Detección de patrones y desbloqueo del sistema  
+│   ├── tracker_kalman.py            # Implementación del filtro de Kalman para suavizar el seguimiento  
+│   ├── tracker.py                   # Lógica de seguimiento de la mano mediante segmentación y contornos  
+│   ├── test.py                      # Scripts de prueba para cámara y funciones auxiliares  
+│  
+├── diagrama_bloques.drawio          # Diagrama de bloques del sistema  
 ├── diagrama.txt                     # Descripción textual de la arquitectura del diagrama de bloques
 
 ---
