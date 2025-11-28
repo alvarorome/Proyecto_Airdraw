@@ -1,5 +1,4 @@
 # Proyecto Airdraw
-
 ## Visión General
 
 Airdraw implementa un sistema de visión por ordenador que combina calibración de cámara, autenticación visual mediante detección de patrones y seguimiento de mano en tiempo real, permitiendo realizar dibujo en el aire tras un proceso de desbloqueo basado en una secuencia y una detección de una forma geométrica.
@@ -9,7 +8,7 @@ Además, integra un modo de seguridad que utiliza detección de contornos y patr
 
 ---
 
-##ESTRUCTURA
+## ESTRUCTURA
 
 PROYECTO_FINAL/
 ├── data/
