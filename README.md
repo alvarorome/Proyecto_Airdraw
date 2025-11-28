@@ -44,8 +44,100 @@ Permite al usuario dibujar con el movimiento de su mano, generando un trazo sobr
 Salida en vídeo:
 Muestra en pantalla el flujo de vídeo anotado con el dibujo y la trayectoria del movimiento.
 
-Dependencies
+Dependencias
 Es necesaria la instalación de las siguientes dependencias antes de ejecutar el proyecto:
 
-bash
 pip install numpy opencv-python imageio mediapipe colorama
+
+Pasos para ejecución
+
+1. Calibración de la cámara
+Antes de usar el sistema, se debe calibrar la cámara.
+Es necesario tener las imágenes del tablero de ajedrez en data/calibration_chess/.
+
+Ejecuta:
+
+python src/calibration.py
+
+Esto generará o actualizará el archivo calibration_data.npz con los parámetros de cámara:
+
+Matriz intrínseca
+Coeficientes de distorsión
+Parámetros extrínsecos
+
+2. Ejecución del sistema principal
+Para ejecutar todo el flujo del sistema, ejecuta:
+
+python src/main.py
+
+El script realizará los siguientes pasos:
+
+Cargar datos de calibración.
+Esperar al desbloqueo mediante detección de patrones (modo de seguridad).
+Una vez autenticado, iniciar el air drawing con seguimiento de mano y Kalman filter.
+Mostrar el resultado en tiempo real con la trayectoria dibujada.
+
+3. Pruebas de cámara y componentes
+   
+Para probar la cámara o verificar las segmentaciones:
+
+python src/test.py
+
+
+Key Functions
+
+calibration.py
+calibrar(): Realiza la calibración de la cámara usando un tablero de ajedrez y guarda los parámetros en un archivo .npz.
+
+seguridad.py
+detectar_patron(frame): Detecta figuras geométricas y verifica la secuencia de desbloqueo.
+autenticacion_visual(): Controla la lógica de desbloqueo visual.
+
+tracker.py
+seguir_mano(frame): Detecta la mano mediante segmentación de piel y extracción de contornos.
+punto_superior(contorno): Obtiene el punto más alto del contorno (punta de los dedos).
+
+tracker_kalman.py
+kalman_update(point): Aplica el filtro de Kalman para suavizar el movimiento detectado.
+
+main.py
+Controla el flujo completo del sistema:
+
+Calibración.
+Modo de autenticación visual.
+Tracking y dibujo en tiempo real.
+
+Ejemplo de salida
+1️ Modo seguridad:
+El sistema detecta la secuencia de patrones geométricos (por ejemplo, líneas y cuadrados).
+Si la secuencia es correcta, aparece un mensaje de desbloqueo.
+
+📸 Aquí puedes insertar las capturas de la detección del patrón.
+
+2️ Modo dibujo:
+El tracker detecta la mano y traza la trayectoria del movimiento con Kalman filter.
+Se muestra la trayectoria sobre el vídeo en tiempo real, generando el air drawing.
+
+📸 Aquí puedes insertar las capturas del vídeo con la trayectoria dibujada.
+
+Configuración
+
+Archivos de calibración:
+data/calibration_data.npz
+
+Imágenes de tablero:
+data/calibration_chess/*.jpg
+
+Se recomienda buena iluminación y fondo uniforme para mejorar la detección de piel.
+
+Usage Notes
+La calibración mejora sustancialmente la precisión del seguimiento.
+El filtro de Kalman reduce el ruido por movimientos bruscos o iluminación variable.
+El modo de seguridad puede ajustarse cambiando el patrón objetivo en seguridad.py.
+
+Futuros desarrollos
+
+Implementar reconocimiento de gestos para controlar interfaces sin contacto.
+Integrar modelos de IA para reconocer lo que el usuario dibuja.
+Usar el desbloqueo por patrones como sistema de autenticación visual.
+Añadir herramientas interactivas como cambio de color, borrado o zoom.
