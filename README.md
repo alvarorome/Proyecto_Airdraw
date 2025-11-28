@@ -1,4 +1,4 @@
-# Proyecto_Airdraw
+Proyecto Airdraw
 
 VISIÓN GENERAL
 Airdraw implementa un sistema de visión por ordenador que combina calibración de cámara, autenticación visual mediante detección de patrones y seguimiento de mano en tiempo real, permitiendo realizar dibujo en el aire tras un proceso de desbloqueo basado en una secuencia y una detección de una forma geométrica.
@@ -112,13 +112,13 @@ Ejemplo de salida
 El sistema detecta la secuencia de patrones geométricos (por ejemplo, líneas y cuadrados).
 Si la secuencia es correcta, aparece un mensaje de desbloqueo.
 
-📸 Aquí puedes insertar las capturas de la detección del patrón.
+ Aquí puedes insertar las capturas de la detección del patrón.
 
 2️ Modo dibujo:
 El tracker detecta la mano y traza la trayectoria del movimiento con Kalman filter.
 Se muestra la trayectoria sobre el vídeo en tiempo real, generando el air drawing.
 
-📸 Aquí puedes insertar las capturas del vídeo con la trayectoria dibujada.
+ Aquí puedes insertar las capturas del vídeo con la trayectoria dibujada.
 
 Configuración
 
@@ -135,9 +135,9 @@ La calibración mejora sustancialmente la precisión del seguimiento.
 El filtro de Kalman reduce el ruido por movimientos bruscos o iluminación variable.
 El modo de seguridad puede ajustarse cambiando el patrón objetivo en seguridad.py.
 
-Futuros desarrollos
+Futuros Desarrollos
 
-Implementar reconocimiento de gestos para controlar interfaces sin contacto.
+Implementar reconocimiento de gestos para control sin contacto.
 Integrar modelos de IA para reconocer lo que el usuario dibuja.
-Usar el desbloqueo por patrones como sistema de autenticación visual.
+Utilizar el desbloqueo por patrones como sistema de autenticación visual.
 Añadir herramientas interactivas como cambio de color, borrado o zoom.
