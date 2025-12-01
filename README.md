@@ -28,21 +28,42 @@ Además, integra un modo de seguridad que utiliza detección de contornos y patr
 
 ## ESTRUCTURA
 
-PROYECTO_FINAL/  
-├── data/  
-│   ├── calibration_chess/           # Imágenes del tablero de ajedrez para la calibración  
-│   ├── calibration_data.npz         # Datos de calibración guardados (intrínsecos, distorsión, etc.)  
-│  
-├── src/  
-│   ├── calibration.py               # Calibración de cámara con tablero de ajedrez  
-│   ├── main.py                      # Script principal que ejecuta el flujo completo del sistema  
-│   ├── seguridad.py                 # Detección de patrones y desbloqueo del sistema  
-│   ├── tracker_kalman.py            # Implementación del filtro de Kalman para suavizar el seguimiento  
-│   ├── tracker.py                   # Lógica de seguimiento de la mano mediante segmentación y contornos  
-│   ├── test.py                      # Scripts de prueba para cámara y funciones auxiliares  
-│  
-├── diagrama_bloques.drawio          # Diagrama de bloques del sistema  
-├── diagrama.txt                     # Descripción textual de la arquitectura del diagrama de bloques
+PROYECTO_FINAL/
+│
+├── data/
+│   ├── calibration_chess/              # Imágenes del tablero de ajedrez para calibración
+│   │   ├── WIN_20251127_11_34_35_Pro.jpg
+│   │   ├── WIN_20251127_11_34_40_Pro.jpg
+│   │   ├── WIN_20251127_11_34_44_Pro.jpg
+│   │   └── ...                         # (resto de las imágenes del patrón)
+│   │
+│   ├── calibration_detected/           # Resultados generados automáticamente por el script
+│   │   ├── Image_0_corners.jpg         # Imágenes con las esquinas detectadas (una por cada foto)
+│   │   ├── Image_1_corners.jpg
+│   │   ├── ...
+│   │   ├── esquinas_detectadas.png     # Imagen final: tablero con esquinas coloreadas (creada por el bloque nuevo)
+│   │   └── calibration_data.npz        # Archivo con parámetros de calibración calculados
+│   │
+│   ├── demo/                           # Demos o materiales visuales del proyecto
+│   │   ├── airdraw.png
+│   │   ├── DEMO.mkv
+│   │   ├── secuencia.png
+│   │   └── secuencia_forma_geométrica.png
+│   │
+│   └── calibration_data.npz            # Copia principal del archivo NPZ (usado por el sistema)
+│
+├── src/
+│   ├── calibration.py                  # Calibración de cámara con tablero de ajedrez
+│   │                                   # Genera 'calibration_data.npz' y 'esquinas_detectadas.png'
+│   ├── main.py                         # Script que orquesta todo el flujo del proyecto
+│   ├── seguridad.py                    # Detección de patrones o seguridad del sistema
+│   ├── tracker_kalman.py               # Implementación del filtro de Kalman
+│   ├── tracker.py                      # Seguimiento de mano / objetos
+│   └── test.py                         # Scripts de prueba y diagnóstico de cámara
+│
+├── diagrama_bloques.drawio             # Diagrama visual de la arquitectura
+├── diagrama.txt                        # Descripción textual del diagrama de bloques
+└── Lab_Project.pdf                     # Documento de entrega / informe
 
 ---
 
