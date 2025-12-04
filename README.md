@@ -84,7 +84,7 @@ Dibujo en el aire con trayectoria en tiempo real sobre el vídeo.
 
 # Dependencias
 
-Instalar mediante pip:
+- Instalar mediante pip:
 
 pip install numpy opencv-python imageio mediapipe colorama
 
@@ -107,15 +107,15 @@ python src/main.py
 
 El flujo incluye:
 
-Carga de parámetros de calibración
+- Carga de parámetros de calibración
 
-Activación del modo seguridad y detección del patrón
+- Activación del modo seguridad y detección del patrón
 
-Seguimiento de mano
+- Seguimiento de mano
 
-Kalman filter
+- Kalman filter
 
-Visualización del air drawing sobre el vídeo
+- Visualización del air drawing sobre el vídeo
 
 ## 3. Pruebas
 Para probar la cámara o componentes por separado:
@@ -155,19 +155,19 @@ Imágenes del tablero: data/calibration_chess/*.jpg
 
 # Requisitos recomendados:
 
-Buena iluminación
+- Buena iluminación
 
-Fondo uniforme
+- Fondo uniforme
 
-Mínima variación de luz
+- Mínima variación de luz
 
 # Notas Prácticas
 
-La calibración mejora significativamente el seguimiento.
+- La calibración mejora significativamente el seguimiento.
 
-El filtro de Kalman reduce el ruido y los movimientos bruscos.
+- El filtro de Kalman reduce el ruido y los movimientos bruscos.
 
-El patrón de desbloqueo (secuencia pedida) puede modificarse en seguridad.py.
+- El patrón de desbloqueo (secuencia pedida) puede modificarse en seguridad.py.
 
 # Futuros Desarrollos
 - Reconocimiento avanzado de gestos.
