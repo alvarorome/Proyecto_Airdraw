@@ -125,23 +125,23 @@ python src/test.py
 
 # Funciones Clave
 calibration.py
-calibrar(): Ejecuta la calibración y guarda calibration_data.npz.
+- calibrar(): Ejecuta la calibración y guarda calibration_data.npz.
 
 seguridad.py
-detectar_patron(frame): Detecta figuras geométricas.
+- detectar_patron(frame): Detecta figuras geométricas.
 
-autenticacion_visual(): Control principal del desbloqueo.
+- autenticacion_visual(): Control principal del desbloqueo.
 
 tracker.py
-seguir_mano(frame): Detecta la mano y genera contornos.
+- seguir_mano(frame): Detecta la mano y genera contornos.
 
-punto_superior(contorno): Extrae el punto más alto del contorno.
+- punto_superior(contorno): Extrae el punto más alto del contorno.
 
 tracker_kalman.py
-kalman_update(point): Actualiza y suaviza la trayectoria.
+- kalman_update(point): Actualiza y suaviza la trayectoria.
 
 main.py
-Controla la ejecución completa del sistema.
+- Controla la ejecución completa del sistema.
 
 # Ejemplo de Salida
 RELLENAR
