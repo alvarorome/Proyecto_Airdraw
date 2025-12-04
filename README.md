@@ -1,184 +1,210 @@
-# Proyecto Airdraw
-## Visión General
+Airdraw – Sistema de Dibujo en el Aire con Visión por Computador
 
-Airdraw implementa un sistema de visión por ordenador que combina calibración de cámara, autenticación visual mediante detección de patrones y seguimiento de mano en tiempo real, permitiendo realizar dibujo en el aire tras un proceso de desbloqueo basado en una secuencia y una detección de una forma geométrica.
+Airdraw implementa un sistema completo de visión por computador que combina:
 
-El proyecto emplea OpenCV y filtros de Kalman para obtener un seguimiento estable del movimiento de la mano, generando trayectorias suaves sobre el vídeo en tiempo real.
-Además, integra un modo de seguridad que utiliza detección de contornos y patrones geométricos para autenticar al usuario antes de habilitar el modo de dibujo.
+Calibración de cámara
 
----
+Autenticación visual mediante patrones geométricos
 
-## Tabla de contenidos
+Seguimiento de mano en tiempo real
 
-- [Visión General](#visión-general)  
-- [Estructura](#estructura)  
-- [Características generales](#características-generales)  
-- [Dependencias](#dependencias)  
-- [Pasos para ejecución](#pasos-para-ejecución)  
-  - [1. Calibración de la cámara](#1-calibración-de-la-cámara)  
-  - [2. Ejecución del sistema principal](#2-ejecución-del-sistema-principal)  
-  - [3. Pruebas de cámara y componentes](#3-pruebas-de-cámara-y-componentes)  
-- [Key Functions](#key-functions)  
-- [Ejemplo de salida](#ejemplo-de-salida)  
-- [Configuración](#configuración)  
-- [Notas prácticas](#notas-prácticas)  
-- [Futuros desarrollos](#futuros-desarrollos)
+Filtrado de trayectoria con Kalman
 
----
+Air drawing: dibujar en el aire usando solo la mano
 
-## ESTRUCTURA
+Diseñado con OpenCV y filtros de Kalman, el proyecto permite un flujo fluido desde la calibración hasta el dibujo en tiempo real, agregando un modo de seguridad previo basado en detección de secuencias y formas geométricas.
 
+Tabla de Contenidos
+
+Descripción General
+
+Estructura del Proyecto
+
+Características
+
+Dependencias
+
+Pasos para la Ejecución
+
+Calibración
+
+Ejecución del Sistema Principal
+
+Pruebas
+
+Funciones Clave
+
+Ejemplo de Salida
+
+Configuración
+
+Notas Prácticas
+
+Futuros Desarrollos
+
+Descripción General
+
+Airdraw permite al usuario dibujar en el aire tras superar una autenticación visual basada en la detección de una secuencia de patrones geométricos.
+Después del desbloqueo, el sistema rastrea la mano en tiempo real mediante segmentación de piel y filtrado con Kalman para obtener un movimiento estable.
+El resultado se muestra superpuesto en directo sobre el vídeo.
+
+Estructura del Proyecto
 PROYECTO_FINAL/
 │
 ├── data/
-│   ├── calibration_chess/                # Imágenes del tablero de ajedrez para calibración
+│   ├── calibration_chess/            # Imágenes del tablero para calibración
 │   │   ├── WIN_20251127_11_34_35_Pro.jpg
 │   │   ├── WIN_20251127_11_34_40_Pro.jpg
 │   │   ├── WIN_20251127_11_34_44_Pro.jpg
-│   │   └── ...                           # (resto de las imágenes del patrón)
+│   │   └── ...                       # Más imágenes del patrón
 │   │
-│   ├── calibration_detected/             # Resultados generados automáticamente por el script
-│   │   ├── esquinas_detectadas.png       # Imagen final: tablero con esquinas coloreadas
-│   │   └── calibration_data.npz          # Parámetros de calibración (K, distorsión, etc.)
-│   │
-│   ├── demo/                             # Material visual de demostración del sistema
-│   │   ├── airdraw.png
-│   │   ├── DEMO.mkv
-│   │   ├── secuencia.png
-│   │   └── secuencia_forma_geométrica.png
-│   │
+│   └── calibration_detected/
+│       ├── esquinas_detectadas.png   # Tablero con esquinas detectadas
+│       └── calibration_data.npz      # Matriz K, distorsión, extrínsecos
+│
+├── demo/                             # Material demostrativo
+│   ├── airdraw.png
+│   ├── DEMO.mkv
+│   ├── secuencia.png
+│   └── secuencia_forma_geométrica.png
 │
 ├── src/
-│   ├── calibration.py                    # Calibración de cámara con tablero de ajedrez
-│   │                                     # Genera 'calibration_data.npz' y 'esquinas_detectadas.png'
-│   ├── main.py                           # Script principal: orquesta el flujo del sistema
-│   ├── seguridad.py                      # Detección de patrones y desbloqueo visual del sistema
-│   ├── tracker_kalman.py                 # Filtro de Kalman para suavizar el seguimiento
-│   ├── tracker.py                        # Seguimiento de la mano mediante segmentación y contornos
-│   └── test.py                           # Scripts de prueba para cámara, detección y seguimiento
+│   ├── calibration.py                # Calibración de la cámara
+│   ├── main.py                       # Ejecución del flujo completo del sistema
+│   ├── seguridad.py                  # Lógica de desbloqueo y patrones
+│   ├── tracker_kalman.py             # Implementación del filtro de Kalman
+│   ├── tracker.py                    # Seguimiento de mano
+│   └── test.py                       # Tests de cámara, segmentación y tracking
 │
-├── diagrama_bloques.drawio               # Diagrama de bloques de la arquitectura del sistema
-├── diagrama.txt                          # Descripción textual del diagrama de bloques
-└── Lab_Project.pdf                       # Documento de entrega / informe técnico
+├── diagrama_bloques.drawio           # Diagrama de arquitectura
+├── diagrama.txt                      # Descripción textual del diagrama
+└── Lab_Project.pdf                   # Informe técnico del proyecto
 
----
+Características
+Calibración de cámara
 
-## CARACTERÍSTICAS GENERALES
+Utiliza un tablero de ajedrez para obtener parámetros intrínsecos y extrínsecos, corrigiendo la distorsión y mejorando la precisión del tracking.
 
-### Calibración de cámara:
-- Se usa un patrón de tablero de ajedrez para corregir la distorsión y asegurar medidas confiables.
+Modo de seguridad
 
-### Modo seguridad:
-- El sistema permanece bloqueado hasta que el usuario muestra una secuencia correcta frente a la cámara y después detecta una forma geométrica.
+El sistema permanece bloqueado hasta detectar correctamente una secuencia de figuras geométricas y una forma específica.
 
-### Seguimiento de mano en tiempo real:
-- Una vez autenticado, se segmenta la piel en el espacio YCrCb y se localiza el punto más alto del contorno para rastrear la mano.
+Seguimiento de mano
 
-### Filtro de Kalman:
-- Suaviza las trayectorias detectadas para obtener un movimiento estable y continuo.
+Segmentación en espacio YCrCb y detección del punto superior del contorno.
 
-### Air Drawing:
-- Permite al usuario dibujar con el movimiento de su mano, generando un trazo sobre el vídeo en tiempo real.
+Filtro de Kalman
 
-### Salida en vídeo:
-- Muestra en pantalla el flujo de vídeo anotado con el dibujo y la trayectoria del movimiento.
+Suaviza el movimiento detectado y reduce saltos o ruido.
 
----
+Air Drawing
 
-## Dependencias
-- Es necesaria la instalación de las siguientes dependencias antes de ejecutar el proyecto:
+Dibujo en el aire con trayectoria en tiempo real sobre el vídeo.
+
+Dependencias
+
+Instalar mediante pip:
 
 pip install numpy opencv-python imageio mediapipe colorama
 
-## Pasos para ejecución
+Pasos para la Ejecución
+1. Calibración
 
-### 1. Calibración de la cámara
-- Antes de usar el sistema, se debe calibrar la cámara.
-- Es necesario tener las imágenes del tablero de ajedrez en data/calibration_chess/.
-
-Ejecuta:
+Coloca las imágenes del tablero en data/calibration_chess/ y ejecuta:
 
 python src/calibration.py
 
-- Esto generará o actualizará el archivo calibration_data.npz con los parámetros de cámara:
 
-Matriz intrínseca
-Coeficientes de distorsión
-Parámetros extrínsecos
+Esto generará:
 
-### 2. Ejecución del sistema principal
-- Para ejecutar todo el flujo del sistema, ejecuta:
+calibration_data.npz
 
+esquinas_detectadas.png
+
+2. Ejecución del Sistema Principal
 python src/main.py
 
-- El script realizará los siguientes pasos:
 
-Cargar datos de calibración.
-Esperar al desbloqueo mediante detección de patrones (modo de seguridad).
-Una vez autenticado, iniciar el air drawing con seguimiento de mano y Kalman filter.
-Mostrar el resultado en tiempo real con la trayectoria dibujada.
+El flujo incluye:
 
-### 3. Pruebas de cámara y componentes
-   
-- Para probar la cámara o verificar las segmentaciones:
+Carga de parámetros de calibración
+
+Activación del modo seguridad y detección del patrón
+
+Seguimiento de mano
+
+Kalman filter
+
+Visualización del air drawing sobre el vídeo
+
+3. Pruebas
+
+Para probar la cámara o componentes por separado:
 
 python src/test.py
 
+Funciones Clave
+calibration.py
 
-## Key Functions
+calibrar(): Ejecuta la calibración y guarda calibration_data.npz.
 
-- calibration.py
-calibrar(): Realiza la calibración de la cámara usando un tablero de ajedrez y guarda los parámetros en un archivo .npz.
+seguridad.py
 
-- seguridad.py
-detectar_patron(frame): Detecta figuras geométricas y verifica la secuencia de desbloqueo.
-autenticacion_visual(): Controla la lógica de desbloqueo visual.
+detectar_patron(frame): Detecta figuras geométricas.
 
-- tracker.py
-seguir_mano(frame): Detecta la mano mediante segmentación de piel y extracción de contornos.
-punto_superior(contorno): Obtiene el punto más alto del contorno (punta de los dedos).
+autenticacion_visual(): Control principal del desbloqueo.
 
-- tracker_kalman.py
-kalman_update(point): Aplica el filtro de Kalman para suavizar el movimiento detectado.
+tracker.py
 
-- main.py
-Controla el flujo completo del sistema:
+seguir_mano(frame): Detecta la mano y genera contornos.
 
-## Calibración.
-- Modo de autenticación visual.
-- Tracking y dibujo en tiempo real.
+punto_superior(contorno): Extrae el punto más alto del contorno.
 
-## Ejemplo de salida
-- 1️ Modo seguridad:
-El sistema detecta la secuencia de patrones geométricos (por ejemplo, líneas y cuadrados).
-Si la secuencia es correcta, aparece un mensaje de desbloqueo.
+tracker_kalman.py
 
- Aquí puedes insertar las capturas de la detección del patrón.
+kalman_update(point): Actualiza y suaviza la trayectoria.
 
-- 2️ Modo dibujo:
-El tracker detecta la mano y traza la trayectoria del movimiento con Kalman filter.
-Se muestra la trayectoria sobre el vídeo en tiempo real, generando el air drawing.
+main.py
 
- Aquí puedes insertar las capturas del vídeo con la trayectoria dibujada.
+Controla la ejecución completa del sistema.
 
-## Configuración
+Ejemplo de Salida
 
-- Archivos de calibración:
-data/calibration_data.npz
+Modo seguridad: el sistema detecta una secuencia de figuras geométricas y desbloquea el modo dibujo.
+Modo dibujo: se detecta la mano, se aplica el filtro de Kalman y se dibuja sobre el vídeo en tiempo real.
 
-- Imágenes de tablero:
+Puedes incluir capturas o vídeos almacenados en la carpeta demo/.
+
+Configuración
+
+Archivo de calibración:
+data/calibration_detected/calibration_data.npz
+
+Imágenes del tablero:
 data/calibration_chess/*.jpg
 
-Se recomienda buena iluminación y fondo uniforme para mejorar la detección de piel.
+Requisitos recomendados:
 
-## Notas prácticas
-- La calibración mejora sustancialmente la precisión del seguimiento.
-- El filtro de Kalman reduce el ruido por movimientos bruscos o iluminación variable.
-- El modo de seguridad puede ajustarse cambiando el patrón objetivo en seguridad.py.
+buena iluminación
 
-## Futuros Desarrollos
+fondo uniforme
 
-- Implementar reconocimiento de gestos para control sin contacto.
-- Integrar modelos de IA para reconocer lo que el usuario dibuja.
-- Utilizar el desbloqueo por patrones como sistema de autenticación visual.
-- Añadir herramientas interactivas como cambio de color, borrado o zoom.
+mínima variación de luz
+
+Notas Prácticas
+
+La calibración mejora significativamente el seguimiento.
+
+El filtro de Kalman reduce el ruido y los movimientos bruscos.
+
+El patrón de desbloqueo puede modificarse en seguridad.py.
+
+Futuros Desarrollos
+
+Reconocimiento avanzado de gestos.
+
+Clasificación automática del dibujo realizado.
+
+Mejora del sistema de autenticación visual.
+
+Herramientas interactivas como borrador, colores, zoom.
