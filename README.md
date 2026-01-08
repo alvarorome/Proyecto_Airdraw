@@ -33,7 +33,6 @@ Después del desbloqueo, el sistema rastrea la mano en tiempo real mediante segm
 El resultado se muestra superpuesto en directo sobre el vídeo.
 
 # Estructura del Proyecto
-
 PROYECTO_FINAL/
 │
 ├── data/
