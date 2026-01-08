@@ -1,4 +1,5 @@
 import cv2
+import time
 import seguridad  # módulo de autenticación por gestos
 from tracker import detectar_centro_mano, actualizar_trayectoria
 from tracker_kalman import crear_kalman, inicializar_estado, paso_kalman
@@ -59,6 +60,9 @@ def main():
 
     modo_tracker = False
 
+    # Inicialización para cálculo de FPS
+    prev_time = time.time()
+
     # Bucle principal de captura de video
     while True:
         ret, frame = cap.read()
@@ -96,6 +100,21 @@ def main():
 
             cv2.putText(frame, "Tracker Mano (AirDraw)", (20, 40),
                         cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
+
+        current_time = time.time()
+        fps = 1.0 / (current_time - prev_time)
+        prev_time = current_time
+
+        h, w, _ = frame.shape
+        cv2.putText(
+            frame,
+            f"FPS: {fps:.2f}",
+            (w - 180, h - 20),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.7,
+            (255, 255, 255),
+            2
+        )
 
         # mostrar la salida
         cv2.imshow("AirDraw Secure", frame)
