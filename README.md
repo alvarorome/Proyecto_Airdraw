@@ -33,36 +33,34 @@ Después del desbloqueo, el sistema rastrea la mano en tiempo real mediante segm
 El resultado se muestra superpuesto en directo sobre el vídeo.
 
 # Estructura del Proyecto
-PROYECTO_FINAL/
-│
-├── data/
-│ ├── calibration_chess/ # Imágenes del tablero para calibración
-│ │ ├── WIN_20251127_11_34_35_Pro.jpg
-│ │ ├── WIN_20251127_11_34_40_Pro.jpg
-│ │ ├── WIN_20251127_11_34_44_Pro.jpg
-│ │ └── ... # Más imágenes del patrón
-│ │
-│ └── calibration_detected/
-│ ├── esquinas_detectadas.png # Tablero con esquinas detectadas
-│ └── calibration_data.npz # Matriz K, distorsión, extrínsecos
-│
-├── demo/ # Material demostrativo
-│ ├── airdraw.png
-│ ├── DEMO.mkv
-│ ├── secuencia.png
-│ └── secuencia_forma_geométrica.png
-│
-├── src/
-│ ├── calibration.py # Calibración de la cámara
-│ ├── main.py # Ejecución del flujo completo del sistema
-│ ├── seguridad.py # Lógica de desbloqueo y patrones
-│ ├── tracker_kalman.py # Implementación del filtro de Kalman
-│ ├── tracker.py # Seguimiento de mano
-│ └── test.py # Tests de cámara, segmentación y tracking
-│
-├── diagrama_bloques.drawio # Diagrama de arquitectura
-├── diagrama.txt # Descripción textual del diagrama
-└── Lab_Project.pdf # Informe técnico del proyecto
+
+- **data/**
+  - **calibration_chess/** – Imágenes del tablero para la calibración
+    - `WIN_20251127_11_34_35_Pro.jpg`
+    - `WIN_20251127_11_34_40_Pro.jpg`
+    - `WIN_20251127_11_34_44_Pro.jpg`
+    - `...` (más imágenes del patrón)
+  - **calibration_detected/**
+    - `esquinas_detectadas.png` – Tablero con esquinas detectadas
+    - `calibration_data.npz` – Matriz intrínseca, distorsión y extrínsecos
+
+- **demo/** – Material demostrativo
+  - `airdraw.png`
+  - `DEMO.mkv`
+  - `secuencia.png`
+  - `secuencia_forma_geométrica.png`
+
+- **src/**
+  - `calibration.py` – Calibración de la cámara
+  - `main.py` – Ejecución del flujo completo del sistema
+  - `seguridad.py` – Lógica de desbloqueo y autenticación por gestos
+  - `tracker_kalman.py` – Implementación del filtro de Kalman
+  - `tracker.py` – Seguimiento de la mano
+  - `test.py` – Tests de cámara, segmentación y tracking
+
+- `diagrama_bloques.drawio` – Diagrama de arquitectura del sistema
+- `diagrama.txt` – Descripción textual del diagrama
+- `Lab_Project.pdf` – Informe técnico del proyecto
 
 # Características
 
